@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Datakshetra helps businesses unlock the full value of their data through Data Intelligence, Data Management, Data Quality, and Data Culture consulting." />
+  <title>Datakshetra — Data Intelligence Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0B1628;
+      --navy-mid: #1A2C45;
+      --navy-light: #243857;
+      --teal: #00C9A7;
+      --teal-dark: #009980;
+      --teal-subtle: rgba(0,201,167,0.10);
+      --teal-subtle2: rgba(0,201,167,0.06);
+      --white: #F8FAFC;
+      --silver: #8A9BB0;
+      --silver-light: #B8C6D4;
+      --border: rgba(138,155,176,0.18);
+      --border-teal: rgba(0,201,167,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6vw;
+      height: 68px;
+      background: rgba(11,22,40,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo span { color: var(--teal); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--silver);
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.55rem 1.3rem;
+      border-radius: 6px;
+      border: 1.5px solid var(--teal);
+      color: var(--teal);
+      background: transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--teal);
+      color: var(--navy);
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--silver);
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .nav-hamburger:hover span { background: var(--white); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 6vw 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Signature element: animated data-grid background */
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 700px;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: var(--teal);
+    }
+
+    h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--teal);
+    }
+
+    .hero-body {
+      font-size: 1.1rem;
+      color: var(--silver-light);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      background: var(--teal);
+      color: var(--navy);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--silver);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-value {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--silver);
+      margin-top: 2px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 100px 6vw;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--silver-light);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--navy-mid);
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--navy-mid);
+      padding: 2.5rem 2rem;
+      transition: background 0.25s;
+      position: relative;
+    }
+
+    .service-card:hover {
+      background: var(--navy-light);
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--teal);
+      color: var(--navy);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: var(--teal-subtle);
+      border: 1px solid var(--border-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: background 0.25s, color 0.25s;
+      color: var(--teal);
+    }
+
+    .service-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--silver);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--teal-subtle2);
+      border: 1px solid var(--border-teal);
+      color: var(--teal);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card {
+      background: var(--navy-mid);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-card-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-card-value {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .about-card-sub {
+      font-size: 0.82rem;
+      color: var(--silver);
+      margin-top: 4px;
+    }
+
+    .pipeline-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .pipeline-fill {
+      height: 100%;
+      background: var(--teal);
+      border-radius: 2px;
+    }
+
+    .about-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .pillar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--silver-light);
+    }
+
+    .pillar::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ── APPROACH ── */
+    #approach {
+      background: var(--navy-mid);
+    }
+
+    .approach-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .approach-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 3rem;
+      text-align: left;
+    }
+
+    .approach-step {
+      background: var(--navy-mid);
+      padding: 2rem 1.5rem;
+    }
+
+    .step-phase {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+
+    .step-heading {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-body {
+      font-size: 0.82rem;
+      color: var(--silver);
+      line-height: 1.65;
+    }
+
+    /* ── CTA ── */
+    #cta {
+      text-align: center;
+      padding: 120px 6vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse at center, rgba(0,201,167,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-inner h2 {
+      margin-bottom: 1rem;
+    }
+
+    .cta-body {
+      font-size: 1rem;
+      color: var(--silver-light);
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .cta-contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--silver);
+    }
+
+    .contact-item svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--teal);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .contact-item a {
+      color: var(--silver-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover { color: var(--teal); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--teal); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.83rem;
+      color: var(--silver);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--silver);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 5vw; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+
+      section { padding: 72px 5vw; }
+
+      #hero { padding: 100px 5vw 64px; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+      .about-pillars { grid-template-columns: 1fr; }
+
+      footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav aria-label="Main navigation">
+  <a href="#" class="nav-logo">Data<span>kshetra</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#approach">Our Approach</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Get in touch</a>
+  <button class="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero" aria-label="Introduction">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Data consulting &amp; advisory</div>
+    <h1>Turn your data into a<br><em>strategic asset</em></h1>
+    <p class="hero-body">
+      Datakshetra helps organisations across Australia build data capability that lasts — from intelligence and management through to quality frameworks and a culture where data genuinely informs decisions.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore our services</a>
+      <a href="#cta" class="btn-ghost">Talk to us</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-value">4</div>
+        <div class="stat-label">Core practice areas</div>
+      </div>
+      <div>
+        <div class="stat-value">End-to-end</div>
+        <div class="stat-label">Data capability building</div>
+      </div>
+      <div>
+        <div class="stat-value">Sydney, AU</div>
+        <div class="stat-label">Based &amp; operating nationally</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services" aria-labelledby="services-heading">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow">What we do</div>
+      <h2 id="services-heading">Four pillars of<br>data excellence</h2>
+    </div>
+    <p class="section-lead">We work across the full data value chain — so you don't have to stitch together four different firms.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      </div>
+      <div class="service-title">Data Intelligence</div>
+      <p class="service-desc">Transform raw data into decisions. We design analytics ecosystems, build BI platforms, and surface the insights your teams need to act with confidence.</p>
+      <div class="service-tags">
+        <span class="tag">Business intelligence</span>
+        <span class="tag">Analytics strategy</span>
+        <span class="tag">AI readiness</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      <div class="service-title">Data Management</div>
+      <p class="service-desc">Build reliable data infrastructure. From architecture design to pipeline governance, we help you manage data as the operational asset it truly is.</p>
+      <div class="service-tags">
+        <span class="tag">Data architecture</span>
+        <span class="tag">Pipeline governance</span>
+        <span class="tag">Master data</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="service-title">Data Quality</div>
+      <p class="service-desc">Make your data trustworthy at scale. We implement quality frameworks, measurement standards, and remediation processes that keep data accurate and reliable.</p>
+      <div class="service-tags">
+        <span class="tag">Quality frameworks</span>
+        <span class="tag">Data profiling</span>
+        <span class="tag">Remediation</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="service-title">Data Culture</div>
+      <p class="service-desc">Technology only works when people trust and use it. We build the literacy, practices, and organisational behaviours that make data-driven work stick.</p>
+      <div class="service-tags">
+        <span class="tag">Data literacy</span>
+        <span class="tag">Change management</span>
+        <span class="tag">Governance</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="about-content">
+    <div class="section-eyebrow">Who we are</div>
+    <h2 id="about-heading">Data consulting<br>without the jargon</h2>
+    <p class="section-lead">
+      Datakshetra was built on a simple belief: most organisations already have enough data. What they lack is the clarity, structure, and confidence to use it well.
+    </p>
+    <p class="section-lead" style="margin-top: 1rem;">
+      We're a specialist consultancy based in Mascot, Sydney. We work with leadership teams and data professionals to close the gap between data potential and business performance.
+    </p>
+    <div class="about-pillars">
+      <div class="pillar">Vendor-independent advice</div>
+      <div class="pillar">Senior-led engagements</div>
+      <div class="pillar">Practical, not theoretical</div>
+      <div class="pillar">Built for Australian business</div>
+      <div class="pillar">End-to-end delivery</div>
+      <div class="pillar">Knowledge transfer included</div>
+    </div>
+  </div>
+
+  <div class="about-visual">
+    <div class="about-card">
+      <div class="about-card-label">Current engagement</div>
+      <div class="about-card-value">Data maturity assessment</div>
+      <div class="about-card-sub">Evaluating readiness across people, process and platform</div>
+      <div class="pipeline-bar"><div class="pipeline-fill" style="width: 72%"></div></div>
+      <div style="font-size:0.75rem; color:var(--silver); margin-top:6px;">72% complete — insights phase</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-label">Practice areas</div>
+      <div style="display:flex; flex-direction:column; gap: 10px; margin-top: 4px;">
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span style="font-size:0.82rem; color:var(--silver-light);">Data Intelligence</span>
+            <span style="font-size:0.75rem; color:var(--teal);">Active</span>
+          </div>
+          <div class="pipeline-bar"><div class="pipeline-fill" style="width:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span style="font-size:0.82rem; color:var(--silver-light);">Data Management</span>
+            <span style="font-size:0.75rem; color:var(--teal);">Active</span>
+          </div>
+          <div class="pipeline-bar"><div class="pipeline-fill" style="width:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span style="font-size:0.82rem; color:var(--silver-light);">Data Quality</span>
+            <span style="font-size:0.75rem; color:var(--teal);">Active</span>
+          </div>
+          <div class="pipeline-bar"><div class="pipeline-fill" style="width:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span style="font-size:0.82rem; color:var(--silver-light);">Data Culture</span>
+            <span style="font-size:0.75rem; color:var(--teal);">Active</span>
+          </div>
+          <div class="pipeline-bar"><div class="pipeline-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-card" style="display:flex; gap: 1.5rem;">
+      <div style="text-align:center; flex:1;">
+        <div style="font-family:'Sora',sans-serif; font-size:1.6rem; font-weight:600; color:var(--white);">Mascot</div>
+        <div style="font-size:0.75rem; color:var(--silver); margin-top:2px;">Sydney HQ</div>
+      </div>
+      <div style="width:1px; background:var(--border);"></div>
+      <div style="text-align:center; flex:1;">
+        <div style="font-family:'Sora',sans-serif; font-size:1.6rem; font-weight:600; color:var(--white);">National</div>
+        <div style="font-size:0.75rem; color:var(--silver); margin-top:2px;">Delivery reach</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── APPROACH ── -->
+<section id="approach" aria-labelledby="approach-heading">
+  <div class="approach-inner">
+    <div class="section-eyebrow">How we work</div>
+    <h2 id="approach-heading">A structured path from<br>data chaos to clarity</h2>
+    <p class="section-lead" style="margin: 0 auto;">Every engagement follows the same disciplined process — no matter the size of the organisation or the complexity of the challenge.</p>
+
+    <div class="approach-steps">
+      <div class="approach-step">
+        <div class="step-phase">Discover</div>
+        <div class="step-heading">Understand your landscape</div>
+        <p class="step-body">We assess your current data assets, systems, team capabilities, and pain points before recommending anything.</p>
+      </div>
+      <div class="approach-step">
+        <div class="step-phase">Design</div>
+        <div class="step-heading">Build a clear roadmap</div>
+        <p class="step-body">A pragmatic plan with prioritised initiatives, defined outcomes, and realistic timelines — not a 200-page strategy deck.</p>
+      </div>
+      <div class="approach-step">
+        <div class="step-phase">Deliver</div>
+        <div class="step-heading">Implement with your team</div>
+        <p class="step-body">We work alongside your people, embedding knowledge as we go so capability stays in-house when we leave.</p>
+      </div>
+      <div class="approach-step">
+        <div class="step-phase">Sustain</div>
+        <div class="step-heading">Measure and improve</div>
+        <p class="step-body">We define success metrics upfront and check back in — your data maturity should compound over time, not plateau.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta" aria-labelledby="cta-heading">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="cta-inner">
+    <div class="section-eyebrow">Get started</div>
+    <h2 id="cta-heading">Ready to unlock the value in your data?</h2>
+    <p class="cta-body">Whether you're starting from scratch or untangling years of technical debt — we'd like to hear about your situation and see if we can help.</p>
+    <a href="mailto:info@datakshetra.com" class="btn-primary" style="font-size:0.95rem; padding: 1rem 2.5rem;">Send us a message</a>
+    <div class="cta-contact">
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <a href="tel:+61449767322">+61 449 767 322</a>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:info@datakshetra.com">info@datakshetra.com</a>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Mascot, Sydney NSW</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <a href="#" class="footer-logo">Data<span>kshetra</span></a>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="#cta">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 Datakshetra. All rights reserved.</p>
+</footer>
+
+<!-- ── HERO CANVAS: animated data-flow grid ── -->
+<script>
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  const TEAL = '#00C9A7';
+  const NAVY = '#0B1628';
+  let W, H, nodes, lines, raf;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    init();
+  }
+
+  function init() {
+    const count = Math.floor((W * H) / 18000);
+    nodes = Array.from({ length: Math.min(count, 55) }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.5 + 0.8,
+      opacity: Math.random() * 0.5 + 0.3
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const D = 160;
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      a.x += a.vx; a.y += a.vy;
+      if (a.x < 0 || a.x > W) a.vx *= -1;
+      if (a.y < 0 || a.y > H) a.vy *= -1;
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < D) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = TEAL;
+          ctx.globalAlpha = (1 - dist / D) * 0.15;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+      ctx.fillStyle = TEAL;
+      ctx.globalAlpha = a.opacity * 0.6;
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    raf = requestAnimationFrame(draw);
+  }
+
+  const ro = new ResizeObserver(resize);
+  ro.observe(canvas.parentElement);
+  resize();
+  draw();
+})();
+</script>
+
+</body>
+</html>
